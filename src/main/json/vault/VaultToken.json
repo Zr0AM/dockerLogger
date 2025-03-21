@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VaultToken",
+  "description": "Token from Vault",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string"
+    },
+    "expires_by": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "valid": {
+      "type": "boolean"
+    }
+  }
+}

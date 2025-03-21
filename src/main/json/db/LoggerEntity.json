@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Log-JPA",
+  "description": "Logs",
+  "type": "object",
+  "properties": {
+    "LogId": {
+      "type": "number"
+    },
+    "LogDttm": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "LogType": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10
+    },
+    "LogApp": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "LogAppComp": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "LogSrcIp": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 15
+    },
+    "LogSrcUser": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "LogMsg": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "LogError": {
+      "type": "boolean"
+    },
+    "LogErrorStack": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "LogDttm",
+    "LogApp",
+    "LogAppComp",
+    "LogSrcIp",
+    "LogSrcUser",
+    "LogMsg",
+    "LogError"
+  ]
+}
+
