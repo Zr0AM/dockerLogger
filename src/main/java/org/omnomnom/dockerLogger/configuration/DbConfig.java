@@ -6,7 +6,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import vault.exception.VaultTokenException;
 
 import javax.sql.DataSource;

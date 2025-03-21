@@ -12,6 +12,7 @@ plugins {
     //war
     id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "org.omnomnom"
@@ -85,6 +86,14 @@ configure <org.jsonschema2pojo.gradle.JsonSchemaExtension> {
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Zr0AM_dockerLogger")
+        property("sonar.organization", "zr0am")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
