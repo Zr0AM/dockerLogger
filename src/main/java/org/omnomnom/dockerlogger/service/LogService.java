@@ -5,6 +5,8 @@ import org.omnomnom.dockerlogger.db.Logentity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 
 @Service
@@ -31,9 +33,10 @@ public class LogService {
 
     private static String getLocalHostAddress() {
         try {
-            return java.net.Inet4Address.getLocalHost().getHostAddress();
-        } catch (Exception e) {
-            return "";
+            InetAddress localhost = InetAddress.getLocalHost();
+            return localhost.getHostAddress();
+        } catch (UnknownHostException e) {
+            return "127.0.0.1";
         }
     }
 }
