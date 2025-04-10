@@ -7,6 +7,8 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 public final class Converter {
     private static final Logger LOGGER = LoggerFactory.getLogger(Converter.class);
 
+    private Converter() {}
+
     public static String getStringFromJson(JSONObject json, String key) {
         return json.optString(key);
     }

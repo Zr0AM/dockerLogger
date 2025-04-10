@@ -101,7 +101,7 @@ public class VaultConfig {
         body.put("client_id", clientId);
         body.put("client_secret", clientSecret);
         body.put("grant_type", "client_credentials");
-        body.put("audience", "audience=https://api.hashicorp.cloud"); //TODO confirm this is needed
+        body.put("audience", "audience=https://api.hashicorp.cloud");
 
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("Content-Type", "application/json");
@@ -133,7 +133,7 @@ public class VaultConfig {
     }
 
     private Vaulttoken convertRespBody(String respBody) {
-        Vaulttoken vaultToken = new Vaulttoken();
+        vaultToken = new Vaulttoken();
         vaultToken.setValid(false);
 
         try {
