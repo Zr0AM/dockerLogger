@@ -1,64 +1,59 @@
 package org.omnomnom.dockerLogger.configuration;
 
-import org.omnomnom.dockerLogger.vault.Secret;
-import org.omnomnom.dockerLogger.vault.VaultSecret;
+import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
-import vault.exception.VaultTokenException;
-
+import vault.configuration.VaultConfig;
 import javax.sql.DataSource;
-import java.util.List;
+import java.util.Map;
 
-@Component
+@Configuration
+@DependsOn("vaultConfig")
 public class DbConfig {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbConfig.class);
 
-    private String DB_CONN_STRING;
-    private String DB_USERNAME;
-    private String DB_PASSWORD;
+    @Resource
+    private VaultConfig vaultConfig;
 
-    public void setProperties(VaultSecret vaultSecret) {
-        List<Secret> secrets = vaultSecret.getSecrets();
+    @Bean
+    public DataSource dbDataSource() {
+        LOGGER.info("Attempting to configure dbDataSource bean using secrets from VaultConfig...");
 
-        String value;
-        for (Secret secret : secrets) {
-            value = secret.getStaticVersion().toString();
+        Map<String, String> secrets = vaultConfig.getVaultSecrets();
 
-            switch (secret.getName()) {
-                case "DB_CONN_STRING":
-                    DB_CONN_STRING = value;
-                    break;
-                case "DB_USERNAME":
-                    DB_USERNAME = value;
-                    break;
-                case "DB_PASSWORD":
-                    DB_PASSWORD = value;
-                    break;
-            }
+        String connectionString = secrets.get("DB_CONN_STRING");
+        String username = secrets.get("DB_USER_NAME");
+        String password = secrets.get("DB_PASSWORD");
+
+        // Check if secrets were successfully retrieved
+        if (connectionString == null || username == null || password == null) {
+            LOGGER.error("Required database configuration properties (database.connection.string, database.username, database.password) " +
+                    "were not found in the secrets retrieved by VaultConfig. " +
+                    "Check VaultConfig logs and ensure secrets exist in Vault with the correct names.");
+            throw new IllegalStateException("Required database configuration properties not loaded via VaultConfig.");
+        } else {
+            LOGGER.info("Database properties retrieved from VaultConfig.");
         }
 
-        if (DB_CONN_STRING == null || DB_USERNAME == null || DB_PASSWORD == null) {
-            throw new VaultTokenException("Not all vault secrets have been retrieved");
-        }
+        String jdbcUrl = "jdbc:sqlserver://" + connectionString + ";encrypt=true;trustServerCertificate=true";
 
+        return DataSourceBuilder.create()
+                .url(jdbcUrl)
+                .username(username)
+                .password(password)
+                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
+                .build();
     }
 
     @Bean
-    public JdbcTemplate dbJdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(this.dbDataSource());
-
-        return jdbcTemplate;
-    }
-
-    private DataSource dbDataSource() {
-        return DataSourceBuilder.create()
-                .url("jdbc:sqlserver://" + DB_CONN_STRING + ";encrypt=true;trustServerCertificate=true")
-                .username(DB_USERNAME)
-                .password(DB_PASSWORD)
-                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
-                .build();
+    public JdbcTemplate dbJdbcTemplate(DataSource dbDataSource) {
+        LOGGER.info("Setting up dbJdbcTemplate bean using the dbDataSource");
+        return new JdbcTemplate(dbDataSource);
     }
 
 }

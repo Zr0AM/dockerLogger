@@ -43,25 +43,17 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-//    implementation("org.springframework.cloud:spring-cloud-starter-vault-config:4.2.0")
     implementation("org.springframework.cloud:spring-cloud-starter-vault-config")
-//    implementation("org.springframework.vault:spring-vault-core:3.1.2")
     implementation("org.springframework.vault:spring-vault-core")
-//    implementation("org.springframework.boot:spring-boot-starter-security:3.4.3")
     implementation("org.springframework.boot:spring-boot-starter-security")
-//    implementation("org.springframework.boot:spring-boot-starter-oauth2-client:3.4.3")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
-//    implementation("net.javacrumbs.shedlock:shedlock-spring:6.0.1")
     implementation("net.javacrumbs.shedlock:shedlock-spring:6.3.0")
-    // https://mvnrepository.com/artifact/javax.validation/validation-api
     implementation("javax.validation:validation-api:1.0.0.GA")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
-
     runtimeOnly("com.microsoft.sqlserver:mssql-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

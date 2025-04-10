@@ -1,8 +1,12 @@
 package org.omnomnom.dockerLogger.controller;
 
+import jakarta.annotation.Resource;
+import org.apache.hc.core5.http.HttpStatus;
+import org.omnomnom.dockerLogger.db.LogEntity;
 import org.omnomnom.dockerLogger.service.LogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,12 +17,17 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/")
 public class LogController {
 
-    @Autowired
+    @Resource
     LogService logService;
 
-    @GetMapping("test")
-    public void testService() {
-        logService.insertLog(LocalDateTime.now(), "INFO", "Test", "test", getLocalHostAddress(), "testUser", "this is a test", false, null);
+    @PostMapping("addLog")
+    public ResponseEntity<String> addLog(@RequestBody LogEntity log) {
+        try {
+            logService.insertLog(LocalDateTime.now(), log.getLogType(), log.getLogApp(), log.getLogAppComp(), getLocalHostAddress(), log.getLogSrcUser(), log.getLogMsg(), log.getLogError(), log.getLogErrorStack());
+            return ResponseEntity.ok("Log added successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body("Error adding log: " + e.getMessage());
+        }
     }
 
     private String getLocalHostAddress() {

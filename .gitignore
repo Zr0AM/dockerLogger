@@ -35,4 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### application properties and secrets ###
 src/main/resources/config/application-local.yaml
+src/main/resources/application.properties

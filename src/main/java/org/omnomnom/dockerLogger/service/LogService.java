@@ -1,7 +1,6 @@
 package org.omnomnom.dockerLogger.service;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +9,16 @@ import java.time.LocalDateTime;
 @Service
 public class LogService {
 
-    @Autowired
+    @Resource
     JdbcTemplate dbJdbcTemplate;
 
-    public void insertLog(LocalDateTime logDttm, String logType, String logApp, String logAppComp, String logSrcIP,
+    public void insertLog(LocalDateTime logDateTime, String logType, String logApp, String logAppComp, String logSrcIP,
                           String logSrcUser, String logMsg, boolean logError, String logErrorStack) {
 
         String storedProcedureCall = "{call dbo.InsertLog(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
         dbJdbcTemplate.update(storedProcedureCall,
-                logDttm,
+                logDateTime,
                 logType,
                 logApp,
                 logAppComp,
