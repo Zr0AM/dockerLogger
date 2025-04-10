@@ -29,7 +29,7 @@ public class LogService {
                 log.getLogErrorStack());
     }
 
-    private String getLocalHostAddress() {
+    private static String getLocalHostAddress() {
         try {
             return java.net.Inet4Address.getLocalHost().getHostAddress();
         } catch (Exception e) {
