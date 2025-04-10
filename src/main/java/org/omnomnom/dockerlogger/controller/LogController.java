@@ -1,9 +1,9 @@
-package org.omnomnom.dockerLogger.controller;
+package org.omnomnom.dockerlogger.controller;
 
 import jakarta.annotation.Resource;
 import org.apache.hc.core5.http.HttpStatus;
-import org.omnomnom.dockerLogger.db.LogEntity;
-import org.omnomnom.dockerLogger.service.LogService;
+import org.omnomnom.dockerlogger.db.LogEntity;
+import org.omnomnom.dockerlogger.service.LogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

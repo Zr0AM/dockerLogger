@@ -2,13 +2,13 @@ package vault.configuration;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.omnomnom.dockerLogger.util.Converter;
-import org.omnomnom.dockerLogger.vault.VaultToken;
+import jakarta.annotation.Resource;
+import org.omnomnom.dockerlogger.util.Converter;
+import org.omnomnom.dockerlogger.vault.VaultToken;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import vault.exception.VaultTokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpMethod;
@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class VaultConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(VaultConfig.class);
 
-    @Autowired
+    @Resource
     RestTemplate restTemplate;
 
     @Value("${vault-env}")

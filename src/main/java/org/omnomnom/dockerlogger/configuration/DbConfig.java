@@ -1,4 +1,4 @@
-package org.omnomnom.dockerLogger.configuration;
+package org.omnomnom.dockerlogger.configuration;
 
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;

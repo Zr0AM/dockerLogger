@@ -1,4 +1,4 @@
-package org.omnomnom.dockerLogger;
+package org.omnomnom.dockerlogger;
 
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
 import org.springframework.context.annotation.Bean;

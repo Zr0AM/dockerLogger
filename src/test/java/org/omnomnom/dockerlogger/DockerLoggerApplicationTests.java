@@ -1,4 +1,4 @@
-package org.omnomnom.dockerLogger;
+package org.omnomnom.dockerlogger;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

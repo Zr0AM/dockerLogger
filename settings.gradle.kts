@@ -1,1 +1,1 @@
-rootProject.name = "dockerLogger"
+rootProject.name = "dockerlogger"

@@ -1,4 +1,4 @@
-package org.omnomnom.dockerLogger.service;
+package org.omnomnom.dockerlogger.service;
 
 import jakarta.annotation.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
