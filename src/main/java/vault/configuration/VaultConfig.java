@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
 import org.omnomnom.dockerlogger.util.Converter;
-import org.omnomnom.dockerlogger.vault.VaultToken;
+import org.omnomnom.dockerlogger.vault.Vaulttoken;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import vault.exception.VaultTokenException;
 import org.slf4j.Logger;
@@ -54,7 +54,7 @@ public class VaultConfig {
     @Value("${spring.cloud.vault.api.proj}")
     String apiProj;
 
-    private VaultToken vaultToken;
+    private Vaulttoken vaultToken;
 
     private URI apiUrl;
 
@@ -132,8 +132,8 @@ public class VaultConfig {
 
     }
 
-    private VaultToken convertRespBody(String respBody) {
-        VaultToken vaultToken = new VaultToken();
+    private Vaulttoken convertRespBody(String respBody) {
+        Vaulttoken vaultToken = new Vaulttoken();
         vaultToken.setValid(false);
 
         try {
@@ -149,7 +149,7 @@ public class VaultConfig {
 
         } catch (Exception e) {
             LOGGER.error("Could not convert response body to VaultToken", e);
-            return new VaultToken();
+            return new Vaulttoken();
 
         }
         return vaultToken;

@@ -1,6 +1,7 @@
 package org.omnomnom.dockerlogger.service;
 
 import jakarta.annotation.Resource;
+import org.omnomnom.dockerlogger.db.Logentity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +13,27 @@ public class LogService {
     @Resource
     JdbcTemplate dbJdbcTemplate;
 
-    public void insertLog(LocalDateTime logDateTime, String logType, String logApp, String logAppComp, String logSrcIP,
-                          String logSrcUser, String logMsg, boolean logError, String logErrorStack) {
+        public void insertLog(Logentity log) {
 
         String storedProcedureCall = "{call dbo.InsertLog(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
         dbJdbcTemplate.update(storedProcedureCall,
-                logDateTime,
-                logType,
-                logApp,
-                logAppComp,
-                logSrcIP,
-                logSrcUser,
-                logMsg,
-                logError,
-                logErrorStack);
+                LocalDateTime.now(),
+                log.getLogType(),
+                log.getLogApp(),
+                log.getLogAppComp(),
+                getLocalHostAddress(),
+                log.getLogSrcUser(),
+                log.getLogMsg(),
+                log.getLogError(),
+                log.getLogErrorStack());
     }
 
+    private String getLocalHostAddress() {
+        try {
+            return java.net.Inet4Address.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            return "";
+        }
+    }
 }
