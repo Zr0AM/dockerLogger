@@ -4,13 +4,6 @@
   "description": "Logs",
   "type": "object",
   "properties": {
-    "LogId": {
-      "type": "number"
-    },
-    "LogDttm": {
-      "type": "string",
-      "format": "date-time"
-    },
     "LogType": {
       "type": "string",
       "minLength": 1,
@@ -51,7 +44,6 @@
     }
   },
   "required": [
-    "LogDttm",
     "LogApp",
     "LogAppComp",
     "LogSrcIp",
