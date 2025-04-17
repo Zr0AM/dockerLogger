@@ -1,4 +1,7 @@
 spring:
+  cloud:
+    vault:
+      authentication: none
   jpa:
     defer-datasource-initialization: true
   data:

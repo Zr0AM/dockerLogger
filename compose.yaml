@@ -1,0 +1,46 @@
+services:
+  # Service name (used for internal networking and referencing)
+  dockerLogger:
+    # Option 1: Build the image from a Dockerfile in the current directory (.)
+    build:
+      context: . # Specifies the directory containing the Dockerfile
+      #dockerfile: Dockerfile # Optional: Specify if your Dockerfile has a different name
+    # --- OR ---
+    # Option 2: Use a pre-built image from a registry (like Docker Hub)
+    image: zr0am/docker-logger-app:v1.0.0 # Replace with your actual image name and tag
+
+    # Optional: Define a specific container name (Compose generates one if omitted)
+    container_name: dockerLogger
+
+    # Restart policy: 'always' restarts if it stops, 'unless-stopped' restarts unless manually stopped
+    restart: on-failure:3
+
+    # Port mapping: Map port 8080 on the host to port 8080 in the container
+    ports:
+      - "8080:8080" # Format is "HOST:CONTAINER"
+
+    environment:
+      - HCP_CLIENT_ID
+      - HCP_CLIENT_SECRET
+
+    # Environment variables needed by your application
+    #environment:
+      # Vault Configuration (replace with your actual values or use .env file)
+      #- HCP_CLIENT_ID=HCP_CLIENT_ID # Example: Reads from a .env file or host environment
+      #- HCP_CLIENT_SECRET=HCP_CLIENT_SECRET
+      #- SPRING_PROFILES_ACTIVE=DEV
+
+    # Optional: Define networks if you have multiple services that need to communicate
+    # networks:
+    #   - app-network
+
+# Optional: Define networks
+# networks:
+#   app-network:
+#     driver: bridge
+
+secrets:
+  HCP_CLIENT_ID:
+    environment: HCP_CLIENT_ID
+  HCP_CLIENT_SECRET:
+    environment: HCP_CLIENT_SECRET
