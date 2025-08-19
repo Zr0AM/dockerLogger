@@ -7,6 +7,7 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'war'
     id 'maven-publish'
     id 'org.springframework.boot' version '3.4.3'
     id 'io.spring.dependency-management' version '1.1.7'
@@ -19,6 +20,8 @@ apply plugin: 'jsonschema2pojo'
 configurations {
     all*.exclude module: 'spring-boot-start-logging'
 }
+
+configurations.archives.canBeResolved = true
 
 sonar {
     properties {
@@ -47,6 +50,7 @@ ext {
     set("springCloudVersion", "2024.0.0")
     set("build.timestamp", (new Date().format("yyyyMMddHHmmss")))
     set("groupId","$group")
+    appStartClassName = 'org.omnomnom.dockerlogger.DockerLoggerApplication'
 }
 
 dependencies {
@@ -69,6 +73,60 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+war {
+    enabled = false
+    archiveClassifier = ''
+}
+
+bootWar {
+    enabled = true
+    mainClass = "${appStartClassName}"
+}
+
+bootJar {
+    enabled = true
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+    }
+}
+
+publishing {
+    publications {
+        bootJava(MavenPublication) {
+            artifact bootJar
+        }
+    }
+}
+
+artifacts {
+    archives bootWar
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
+
+test {
+    finalizedBy jacocoTestReport
+    jvmArgs(
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED"
+    )
+}
+
 jsonSchema2Pojo {
     targetPackage = group.toString() + "." +  rootProject.name
     includeJsr303Annotations = true
@@ -84,28 +142,4 @@ jsonSchema2Pojo {
     outputEncoding = "UTF-8"
     setSource(files("src/main/json"))
     setAnnotationStyle("jackson2")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-    }
-}
-
-jacocoTestReport {
-    dependsOn test
-    reports {
-        xml.required = true
-    }
-}
-
-tasks.named("test") {
-    useJUnitPlatform()
-}
-
-test {
-    finalizedBy jacocoTestReport
-    jvmArgs(
-            "--add-opens", "java.base/java.lang=ALL-UNNAMED"
-    )
 }
