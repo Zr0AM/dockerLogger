@@ -12,7 +12,7 @@ plugins {
     //war
     id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.sonarqube") version "6.0.1.5171"
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "org.omnomnom"
