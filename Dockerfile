@@ -1,5 +1,4 @@
 #FROM ubuntu:latest
-#LABEL authors="Admin"
 
 #ENTRYPOINT ["top", "-b"]
 # 1: Build the application JAR using Gradle and JDK 23
@@ -57,5 +56,5 @@ EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Optional: Add labels for metadata (good practice)
-LABEL description="dockerLogger"
-
+LABEL description="dockerlogger"
+LABEL author="zr0am"

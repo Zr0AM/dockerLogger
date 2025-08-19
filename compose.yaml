@@ -1,16 +1,17 @@
 services:
   # Service name (used for internal networking and referencing)
-  dockerLogger:
+  dockerlogger:
     # Option 1: Build the image from a Dockerfile in the current directory (.)
     build:
       context: . # Specifies the directory containing the Dockerfile
-      #dockerfile: Dockerfile # Optional: Specify if your Dockerfile has a different name
+      dockerfile: Dockerfile # Optional: Specify if your Dockerfile has a different name
+      tags: ["zr0am/dockerlogger:v1.2.4"]
     # --- OR ---
     # Option 2: Use a pre-built image from a registry (like Docker Hub)
-    image: zr0am/docker-logger-app:v1.0.0 # Replace with your actual image name and tag
+    #image: zr0am/docker-logger:v1.1.0 # Replace with your actual image name and tag
 
     # Optional: Define a specific container name (Compose generates one if omitted)
-    container_name: dockerLogger
+    container_name: dockerlogger
 
     # Restart policy: 'always' restarts if it stops, 'unless-stopped' restarts unless manually stopped
     restart: on-failure:3
@@ -22,6 +23,7 @@ services:
     environment:
       - HCP_CLIENT_ID
       - HCP_CLIENT_SECRET
+      - HCP_PROJ
       - SPRING_PROFILE
 
 networks:
@@ -33,5 +35,7 @@ secrets:
     environment: HCP_CLIENT_ID
   HCP_CLIENT_SECRET:
     environment: HCP_CLIENT_SECRET
+  HCP_PROJ:
+    environment: HCP_PROJ
   SPRING_PROFILE:
     environment: SPRING_PROFILE
