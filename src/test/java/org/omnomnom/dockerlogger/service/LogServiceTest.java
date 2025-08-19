@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@Profile("!test")
+@Profile("!DEV")
 @ExtendWith(MockitoExtension.class) // Integrates Mockito with JUnit 5
 class LogServiceTest {
 
