@@ -96,10 +96,6 @@ publishing {
     }
 }
 
-artifacts {
-    archives bootWar
-}
-
 tasks.named("test") {
     useJUnitPlatform()
 }
