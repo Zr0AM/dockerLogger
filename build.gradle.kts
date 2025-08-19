@@ -16,7 +16,7 @@ plugins {
 }
 
 group = "org.omnomnom"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0-SNAPSHOT"
 
 apply(plugin = "jsonschema2pojo")
 apply(plugin = "maven-publish")
@@ -47,6 +47,7 @@ dependencies {
     implementation("org.springframework.vault:spring-vault-core")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+    implementation("org.springframework.boot:spring-boot-starter-quartz")
 
     implementation("net.javacrumbs.shedlock:shedlock-spring:6.3.0")
     implementation("javax.validation:validation-api:1.0.0.GA")
