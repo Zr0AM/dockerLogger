@@ -116,6 +116,13 @@ test {
     )
 }
 
+sonar {
+    properties {
+        property "sonar.projectKey", "Zr0AM_dockerLogger"
+        property "sonar.organization", "zr0am"
+    }
+}
+
 jsonSchema2Pojo {
     targetPackage = group.toString() + "." +  rootProject.name
     includeJsr303Annotations = true
