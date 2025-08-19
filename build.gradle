@@ -27,7 +27,7 @@ repositories {
 ext {
     set("springCloudVersion", "2024.0.0")
     set("build.timestamp", (new Date().format("yyyyMMddHHmmss")))
-    set("groupId","$group")
+    set("groupId", "$group")
     appStartClassName = 'org.omnomnom.dockerlogger.DockerLoggerApplication'
 }
 
@@ -115,7 +115,7 @@ tasks.named("test") {
 }
 
 jsonSchema2Pojo {
-    targetPackage = group.toString() + "." +  rootProject.name
+    targetPackage = group.toString() + "." + rootProject.name
     includeJsr303Annotations = true
     includeAdditionalProperties = false
     dateType = "java.time.LocalDate"
