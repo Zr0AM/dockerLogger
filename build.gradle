@@ -82,11 +82,12 @@ test {
 
 sonar {
     properties {
-        property("sonar.projectKey", "Zr0AM_dockerLogger")
-        property("sonar.organization", "zr0am")
-        property("sonar.projectName", "dockerLogger")
-        property("sonar.sources", "src/main/java")
-        property("sonar.host.url", "https://sonarcloud.io")
+        property "sonar.projectKey", "Zr0AM_dockerLogger"
+        property "sonar.organization", "zr0am"
+        property "sonar.projectName", "dockerLogger"
+        property "sonar.sources", "src/main/java"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
@@ -98,20 +99,18 @@ bootJar {
     enabled = true
 }
 
-//publishing {
-//    publications {
-//        bootJava(MavenPublication) {
-//            artifact bootJar
-//        }
-//    }
-//}
-
 artifacts {
     archives bootWar
 }
 
 tasks.named("test") {
     useJUnitPlatform()
+}
+
+tasks.named("sonar") {
+    dependsOn(
+            jacocoTestReport
+    )
 }
 
 jsonSchema2Pojo {

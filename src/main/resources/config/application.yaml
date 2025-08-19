@@ -20,3 +20,6 @@ spring:
     jpa:
       repositories:
         bootstrap-mode: lazy
+
+sonar:
+  token: ${SONAR_TOKEN}

@@ -5,6 +5,9 @@ import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Configuration
 public class QuartzConfig {
 
@@ -27,7 +30,7 @@ public class QuartzConfig {
                 .withIdentity("startupLogTrigger")
                 .withDescription("Fires once on application startup")
                 .usingJobData(jobDataMap)
-                .startNow()
+                .startAt(Date.from(Instant.now().plusSeconds(60)))
                 .build();
     }
 
