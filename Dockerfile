@@ -15,11 +15,11 @@ COPY gradlew .
 COPY gradle gradle
 
 # Copy the build configuration files
-COPY build.gradle.kts .
+COPY build.gradle .
 # Copy settings.gradle.
 
 #kts if you have one
-COPY settings.gradle.kts .
+COPY settings.gradle .
 
 # Copy the source code
 COPY src src
@@ -44,7 +44,7 @@ FROM eclipse-temurin:23-jre-alpine
 WORKDIR /app
 
 # Copy the executable JAR from the build stage
-# Adjust the JAR name if your build.gradle.kts produces a different name
+# Adjust the JAR name if your build.gradle produces a different name
 # It's typically found in build/libs/your-app-name-version.jar
 COPY --from=build /app/build/libs/*.jar app.jar
 
