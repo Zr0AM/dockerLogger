@@ -72,21 +72,9 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-bootJar {
-    enabled = true
-}
-
 jacocoTestReport {
     reports {
         xml.required = true
-    }
-}
-
-publishing {
-    publications {
-        bootJava(MavenPublication) {
-            artifact bootJar
-        }
     }
 }
 
