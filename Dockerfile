@@ -5,7 +5,7 @@
 # Use an official Gradle image that includes JDK 23. Adjust the tag if needed.
 # Check Docker Hub for available gradle:jdk23 tags (e.g., gradle:8.8.0-jdk23)
 
-FROM gradle:9.0.0-jdk23 AS build
+FROM gradle:8.13.0-jdk23 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
