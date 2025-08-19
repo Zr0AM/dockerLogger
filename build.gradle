@@ -20,11 +20,11 @@ apply plugin: 'jsonschema2pojo'
 group = "org.omnomnom"
 version = "1.0.0-SNAPSHOT"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
-    }
-}
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(23)
+//    }
+//}
 
 repositories {
     mavenCentral()
