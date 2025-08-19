@@ -61,7 +61,7 @@ configurations {
     all*.exclude module: 'spring-boot-start-logging'
 }
 
-//configurations.archives.canBeResolved = true
+configurations.archives.canBeResolved = true
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
@@ -104,13 +104,13 @@ bootJar {
     enabled = true
 }
 
-publishing {
-    publications {
-        bootJava(MavenPublication) {
-            artifact bootJar
-        }
-    }
-}
+//publishing {
+//    publications {
+//        bootJava(MavenPublication) {
+//            artifact bootJar
+//        }
+//    }
+//}
 
 artifacts {
     archives bootWar
