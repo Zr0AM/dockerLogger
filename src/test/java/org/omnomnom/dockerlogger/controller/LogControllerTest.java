@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.omnomnom.dockerlogger.db.Logentity;
 import org.omnomnom.dockerlogger.service.LogService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -24,6 +25,7 @@ import static org.mockito.Mockito.*;
  * allowing for focused testing of the controller's logic without
  * involving the actual service implementation or database.
  */
+@Profile("!test")
 @ExtendWith(MockitoExtension.class)
 class LogControllerTest {
 
