@@ -33,13 +33,13 @@ public class VaultConfig {
     @Resource
     RestTemplate restTemplate;
 
-    @Value("${vault-env}")
-    String vaultEnv;
+    @Value("${spring.application.name}")
+    String appId;
 
-    @Value("${vault-client}")
+    @Value("${spring.cloud.vault.client}")
     String clientId;
 
-    @Value("${vault-secret}")
+    @Value("${spring.cloud.vault.secret}")
     String clientSecret;
 
     @Value("${spring.cloud.vault.uri}")
@@ -74,7 +74,7 @@ public class VaultConfig {
 
     private void generateUri() {
         apiUrl = URI.create(
-                apiBase + apiOrg + "/projects/" + apiProj + "/apps/" + vaultEnv + "/secrets:open"
+                apiBase + apiOrg + "/projects/" + apiProj + "/apps/" + appId + "/secrets:open"
         );
     }
 
