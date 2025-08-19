@@ -21,8 +21,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
         with:
           args:
-            -Dsonar.projectKey="Zr0AM:dockerLogger"
+            -Dsonar.projectKey="Zr0AM_dockerLogger"
             -Dsonar.organization="zr0am"
-            -Dsonar.sources="./src/main/java,./src/main/resources"
-            -Dsonar.tests=".src/test"
-          projectBaseDir: ./github/workspace/src
+            -Dsonar.sources="src/main/java,src/main/resources"
+            -Dsonar.tests="src/test"
+          projectBaseDir: github/workspace
