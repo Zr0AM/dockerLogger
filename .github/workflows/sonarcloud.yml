@@ -1,4 +1,4 @@
-name: SonarQube
+name: SonarQube scan
 
 on:
   push:
@@ -8,7 +8,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  SonarQube:
+    name: "SonarQube scan"
     runs-on: ubuntu-latest
 
     steps:
