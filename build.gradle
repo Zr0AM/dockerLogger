@@ -23,16 +23,6 @@ configurations {
 
 configurations.archives.canBeResolved = true
 
-sonar {
-    properties {
-        property("sonar.projectKey", "Zr0AM_dockerLogger")
-        property("sonar.organization", "zr0am")
-        property("sonar.projectName", "dockerLogger")
-        property("sonar.sources", "src/main/java")
-        property("sonar.host.url", "https://sonarcloud.io")
-    }
-}
-
 group = "org.omnomnom"
 version = "1.0.0-SNAPSHOT"
 
