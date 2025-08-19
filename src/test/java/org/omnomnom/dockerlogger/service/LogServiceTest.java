@@ -1,4 +1,4 @@
-package org.omnomnom.dockerlogger;
+package org.omnomnom.dockerlogger.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.omnomnom.dockerlogger.db.Logentity; // Make sure this import is correct
-import org.omnomnom.dockerlogger.service.LogService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.LocalDateTime;
