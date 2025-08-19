@@ -68,18 +68,10 @@ dependencyManagement {
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
-
 jacocoTestReport {
     reports {
         xml.required = true
     }
-}
-
-tasks.named("test") {
-    useJUnitPlatform()
 }
 
 test {
