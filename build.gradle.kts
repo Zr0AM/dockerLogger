@@ -82,6 +82,12 @@ dependencyManagement {
     }
 }
 
+sonar {
+    properties {
+        property("sonar.projectBaseDir", "../../src")
+    }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
