@@ -20,6 +20,7 @@ sonarqube {
         property("sonar.projectKey", "Zr0AM_dockerLogger")
         property("sonar.organization", "zr0am")
         property("sonar.projectName", "dockerLogger")
+        property("sonar.sources", "src/main/java")
         property("sonar.host.url", "https://sonarcloud.io")
     }
 }
