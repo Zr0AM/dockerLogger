@@ -119,7 +119,7 @@ public class VaultConfig {
 
             this.vaultToken = convertRespBody(response.getBody());
 
-            if (!vaultToken.getValid()) {
+            if (vaultToken.getValid().equals(false)) {
                 LOGGER.error("Could not obtain a valid vault token after successful HTTP call.");
                 throw new VaultTokenException("Could not obtain a valid vault token");
             }
