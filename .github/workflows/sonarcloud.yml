@@ -37,4 +37,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
-        run: ./gradlew sonar -Dsonar.projectKey=Zr0AM_dockerLogger -Dsonar.projectName="dockerLogger"
+        run: ./gradlew sonar -Dproject.settings=src/main/resources/sonar-project.properties
