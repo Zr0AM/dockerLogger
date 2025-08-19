@@ -25,4 +25,4 @@ jobs:
             -Dsonar.organization="zr0am"
             -Dsonar.sources="./src/main/java,./src/main/resources"
             -Dsonar.tests=".src/test"
-          projectBaseDir: .
+          projectBaseDir: ./github/workspace/src
