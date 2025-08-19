@@ -1,7 +1,19 @@
 spring:
+  application:
+    name: dockerLogger
+  profiles:
+    active:
+      - ${SPRING_PROFILE}
   cloud:
     vault:
+      client: ${HCP_CLIENT_ID}
+      secret: ${HCP_CLIENT_SECRET}
       authentication: none
+      uri: https://auth.idp.hashicorp.com/oauth2/token
+      api:
+        base: https://api.cloud.hashicorp.com/secrets/2023-11-28/organizations/
+        org: a1e3ad96-1e3f-436e-9744-e3338435edd2
+        proj: ${HCP_PROJ}
   jpa:
     defer-datasource-initialization: true
   data:
