@@ -25,7 +25,6 @@ import static org.mockito.Mockito.*;
  * allowing for focused testing of the controller's logic without
  * involving the actual service implementation or database.
  */
-@Profile("!DEV")
 @ExtendWith(MockitoExtension.class)
 class LogControllerTest {
 
