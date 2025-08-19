@@ -26,8 +26,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Generate build
+        run: ./gradlew build
+
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
-        run: ./gradlew sonarqube -Dsonar.projectKey=Zr0AM_dockerLogger -Dsonar.projectName="dockerLogger"
+        run: ./gradlew sonar -Dsonar.projectKey=Zr0AM_dockerLogger -Dsonar.projectName="dockerLogger"
