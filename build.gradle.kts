@@ -82,14 +82,6 @@ dependencyManagement {
     }
 }
 
-sonar {
-    properties {
-        property("sonar.projectKey", "Zr0AM_dockerLogger")
-        property("sonar.organization", "zr0am")
-        property("sonar.host.url", "https://sonarcloud.io")
-    }
-}
-
 tasks.withType<Test> {
     useJUnitPlatform()
 }
