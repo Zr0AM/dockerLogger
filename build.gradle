@@ -78,11 +78,6 @@ war {
     archiveClassifier = ''
 }
 
-bootWar {
-    enabled = true
-    mainClass = "${appStartClassName}"
-}
-
 bootJar {
     enabled = true
 }
