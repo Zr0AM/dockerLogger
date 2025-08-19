@@ -49,10 +49,12 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2.2.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-          sonar.projectKey: Zr0AM_dockerLogger
-          sonar.organization: zr0am
-          sonar.host.url: https://sonarcloud.io
-          sonar.projectName: dockerLogger
-          sonar.sources: "src/main/java,src/main/resources"
-          sonar.tests: "src/test"
-          sonar.processTestResources: "src/test"
+        with:
+          args:
+            -Dsonar.projectKey=Zr0AM_dockerLogger
+            -Dsonar.organization=zr0am
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.projectName=dockerLogger
+            -Dsonar.sources="src/main/java,src/main/resources"
+            -Dsonar.tests="src/test"
+            -Dsonar.processTestResources="src/test"
