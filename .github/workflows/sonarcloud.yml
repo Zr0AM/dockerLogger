@@ -7,8 +7,6 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    - name: Grant execute permission for gradlew
-      run: chmod +x ./gradlew
     - name: Build and analyze
       runs-on: ubuntu-latest
       steps:
